@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgriRent | Equipment Rental</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#">🌾 AgriRent</a>
+  <nav><a href="#home">Home</a><a href="#equipment">Equipment</a><a href="#add">Add Equipment</a><a href="#bookings">Bookings</a></nav>
+</header>
+<main>
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <span class="eyebrow">SMART FARMING • EASY RENTAL</span>
+      <h1>Rent the right equipment.<br><em>Grow more every day.</em></h1>
+      <p>Book tractors and farm machinery by the hour. Affordable equipment rental made simple for every farmer.</p>
+      <a class="primary-btn" href="#equipment">Explore Equipment →</a>
+    </div>
+    <div class="hero-art" aria-label="Tractor illustration">🚜</div>
+  </section>
+
+  <section class="section" id="equipment">
+    <div class="section-heading"><div><span class="eyebrow">OUR MACHINERY</span><h2>Available equipment</h2></div><button class="outline-btn" onclick="loadEquipment()">↻ Refresh</button></div>
+    <p class="muted">Choose a machine, enter your details and book it for the number of hours you need.</p>
+    <div id="equipmentList" class="equipment-grid"><p>Loading equipment...</p></div>
+  </section>
+
+  <section class="section form-section" id="add">
+    <div class="section-heading"><div><span class="eyebrow">ADMIN PANEL</span><h2>Add new equipment</h2></div></div>
+    <form id="equipmentForm" class="form-grid">
+      <label>Equipment name<input name="name" required placeholder="e.g. Power Tiller"></label>
+      <label>Category<select name="category"><option>Tractor</option><option>Harvester</option><option>Farm Implement</option><option>Excavator</option><option>Generator</option></select></label>
+      <label>Price per hour (₹)<input name="pricePerHour" type="number" min="1" required placeholder="500"></label>
+      <label>Location<input name="location" required placeholder="e.g. Hyderabad"></label>
+      <button class="primary-btn" type="submit">Add Equipment</button>
+    </form>
+  </section>
+
+  <section class="section" id="bookings">
+    <div class="section-heading"><div><span class="eyebrow">RENTAL RECORDS</span><h2>Booking management</h2></div><button class="outline-btn" onclick="loadBookings()">↻ Refresh</button></div>
+    <div class="table-wrap"><table><thead><tr><th>ID</th><th>Customer</th><th>Equipment</th><th>Hours</th><th>Total</th><th>Date</th><th>Status</th><th>Action</th></tr></thead><tbody id="bookingRows"><tr><td colspan="8">Loading bookings...</td></tr></tbody></table></div>
+  </section>
+</main>
+<footer>© 2026 AgriRent – Equipment Rental Management System</footer>
+
+<div class="modal-backdrop" id="bookingModal">
+  <form class="modal" id="bookingForm">
+    <button type="button" class="close-btn" onclick="closeBooking()">×</button>
+    <span class="eyebrow">NEW RENTAL</span><h2>Book equipment</h2>
+    <p id="selectedEquipment" class="muted"></p>
+    <input type="hidden" name="equipmentId">
+    <label>Your full name<input name="customerName" required placeholder="Enter your name"></label>
+    <label>10-digit mobile number<input name="phone" required pattern="[0-9]{10}" maxlength="10" placeholder="9876543210"></label>
+    <label>Number of hours<input name="hours" type="number" min="1" max="24" value="1" required></label>
+    <button class="primary-btn" type="submit">Confirm Booking</button>
+  </form>
+</div>
+<div id="toast" class="toast"></div>
+<script src="/app.js"></script>
+</body>
+</html>
